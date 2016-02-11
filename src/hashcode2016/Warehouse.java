@@ -33,4 +33,8 @@ public class Warehouse {
     public void unloadFromDrone(int itemId, int quantity){
         inventory[itemId] += quantity;
     }
+    
+    public int checkQuantity(int itemId){
+        return inventory[itemId];
+    }
 }
