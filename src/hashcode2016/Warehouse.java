@@ -21,4 +21,16 @@ public class Warehouse {
         this.inventory = inventory;
         idNumber = id;
     }
+    
+    public boolean loadOntoDrone(int itemId, int quantity){
+        if(inventory[itemId]-quantity < 0){
+            return false;
+        }
+        inventory[itemId]-=quantity;
+        return true;
+    }
+    
+    public void unloadFromDrone(int itemId, int quantity){
+        inventory[itemId] += quantity;
+    }
 }
