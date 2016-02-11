@@ -16,6 +16,9 @@ public class Drone {
     private static int carryingCapacity;
     private int rowPos;
     private int colPos;
+    boolean available;
+    int nextTurnAvailable;
+    int turn;
 
     
     public Drone(int idNumber, int numberOfItems, int capacity, int startingRow, int startingCol){
@@ -53,6 +56,15 @@ public class Drone {
         return (int)Math.ceil( ( Math.sqrt(form1 + form2) ) );
     }
     
+
+    public boolean incrementTurn(){
+        turn++;
+        if(turn >= nextTurnAvailable)
+            available = true;
+        return available;
+    }
+    
+
     // Returns sorted array of closest warehouses from this drone
     // Format: closest to furthest
     public Warehouse[] getClosestWarehouses(Warehouse[] warehouses){
@@ -93,4 +105,5 @@ public class Drone {
         
         return warehouses;
     }
+
 }
