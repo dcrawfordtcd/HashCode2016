@@ -27,7 +27,7 @@ public class HashCode2016 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
         FileWriter fileWriter = new FileWriter("output.txt");
-        int inputFile = 1;
+        int inputFile = 0;
         File file;
         switch(inputFile)
         {
@@ -87,8 +87,24 @@ public class HashCode2016 {
             Order order = new Order(i, deliveryRow, deliveryColumn, items, productWeights, warehouses[0]);
             orders.push(order);
         }
+        
         System.out.println("I think that read in correctly...");
         
+        for(int i = 0; i < deadline; i++)
+        {
+            for(Drone theDrone : drones)
+            {
+                theDrone.incrementTurn();
+                
+                if(theDrone.available)
+                {
+                    Order topOrder = orders.pop();
+                    Order remainderOrder = theDrone.processOrder(topOrder, warehouses);
+                    if(remainderOrder != null)
+                        orders.push(remainderOrder);
+                }
+            }
+        }
     }
         
     public static void printGrid(boolean[][] grid)

@@ -5,6 +5,8 @@
  */
 package hashcode2016;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Shane
@@ -16,6 +18,9 @@ public class Drone {
     private static int carryingCapacity;
     private int rowPos;
     private int colPos;
+    boolean available;
+    int nextTurnAvailable;
+    int turn;
 
     
     public Drone(int idNumber, int numberOfItems, int capacity, int startingRow, int startingCol){
@@ -125,4 +130,20 @@ public class Drone {
         
         return warehouses;
     }
+    
+    public Order processOrder(Order order, Warehouse[] warehouses) {
+        warehouses = getClosestWarehouses(warehouses);
+        ArrayList<Integer> items = order.items;
+        
+        
+        return null; // <-- PLACEHOLDER
+    }
+
+    public boolean incrementTurn(){
+        turn++;
+        if(turn >= nextTurnAvailable)
+            available = true;
+        return available;
+    }
+    
 }
