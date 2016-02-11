@@ -24,7 +24,7 @@ public class HashCode2016 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
         FileWriter fileWriter = new FileWriter("output.txt");
-        int inputFile = 1;
+        int inputFile = 0;
         File file;
         switch(inputFile)
         {
@@ -70,8 +70,13 @@ public class HashCode2016 {
                 int productType = scanner.nextInt();
             }
         }
+        
         System.out.println("I think that read in correctly...");
         
+        for(int i = 0; i < deadline; i++)
+        {
+            
+        }
     }
         
     public static void printGrid(boolean[][] grid)
