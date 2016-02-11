@@ -7,6 +7,8 @@ package hashcode2016;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -19,21 +21,56 @@ public class HashCode2016 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("tc1.txt");
-        Scanner scanner = new Scanner(file);
-        int R = scanner.nextInt();
-        int C = scanner.nextInt();
-        boolean[][] grid = new boolean[R][C];
-        for(int i = 0; i < R; i++)
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        
+        FileWriter fileWriter = new FileWriter("output.txt");
+        int inputFile = 1;
+        File file;
+        switch(inputFile)
         {
-            char[] line = scanner.next().toCharArray();
-            for(int j = 0; j < C; j++)
-                if(line[j] == '#')
-                    grid[i][j] = true;
+            case 0 : file = new File("busy_day.in");
+                break;
+            case 1 : file = new File("mother_of_all_warehouses.in");
+                break;
+            default : file = new File("redundancy.in");
+                break;
         }
-        //printGrid(grid);
-        //printGridWithIndexes(grid);
+        
+        Scanner scanner = new Scanner(file);
+        int rows = scanner.nextInt();
+        int columns = scanner.nextInt();
+        int D = scanner.nextInt();
+        int deadline = scanner.nextInt();
+        int maxLoad = scanner.nextInt();
+        int P = scanner.nextInt();
+        int[] productWeights = new int[P];
+        for(int i = 0; i < P; i++)
+        {
+            productWeights[i] = scanner.nextInt();
+        }
+        int W = scanner.nextInt();
+        
+        for(int i = 0; i < W; i++)
+        {
+            int warehouseR = scanner.nextInt();
+            int warehouseC = scanner.nextInt();
+            int[] warehouseProducts = new int[P];
+            for(int j = 0; j < P; j++)
+                warehouseProducts[j] = scanner.nextInt();
+        }
+        
+        int C = scanner.nextInt();
+        for(int i = 0; i < C; i++)
+        {
+            int deliveryRow = scanner.nextInt();
+            int deliveryColumn = scanner.nextInt();
+            int numberOfItems = scanner.nextInt();
+            for(int j = 0; j < numberOfItems; j++)
+            {
+                int productType = scanner.nextInt();
+            }
+        }
+        System.out.println("I think that read in correctly...");
         
     }
         
