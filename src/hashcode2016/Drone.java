@@ -22,7 +22,12 @@ public class Drone {
         carryingCapacity = capacity;
     }
     
-    public void load(int numberOfItems, int itemType, int itemWeight){
-        
+    public boolean load(int numberOfItems, int itemType, int itemWeight){
+        if(itemWeight*numberOfItems > carryingCapacity){
+            return false;
+        }
+        inventory[itemType] += numberOfItems;
+        currentWeight+= itemWeight*numberOfItems;
+        return true;
     }
 }
