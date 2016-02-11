@@ -112,6 +112,18 @@ public class Drone {
         warehouses = getClosestWarehouses(warehouses);
         ArrayList<Integer> items = order.items;
         
+        int weight = 0;
+        
+        // loop until a warehouse with at least one wanted item is found.
+        for (Warehouse house : warehouses) {
+            for (int i = 0; i < items.size(); i++) {
+                int item = items.get(i);
+                
+                if (house.loadOntoDrone(item, 1)) {
+                    
+                }
+            }
+        }
         
         return null; // <-- PLACEHOLDER
     }
