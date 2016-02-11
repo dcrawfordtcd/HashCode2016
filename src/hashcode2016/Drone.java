@@ -56,6 +56,7 @@ public class Drone {
         return (int)Math.ceil( ( Math.sqrt(form1 + form2) ) );
     }
     
+
     public boolean incrementTurn(){
         turn++;
         if(turn >= nextTurnAvailable)
@@ -63,4 +64,46 @@ public class Drone {
         return available;
     }
     
+
+    // Returns sorted array of closest warehouses from this drone
+    // Format: closest to furthest
+    public Warehouse[] getClosestWarehouses(Warehouse[] warehouses){
+        int distances[] = new int[warehouses.length];
+        
+        for(int i = 0; i < warehouses.length; i++){
+            int distance = getDistance(
+                    warehouses[i].getRow(), warehouses[i].getColumn()
+            );
+            distances[i] = distance;   
+        }
+        
+        warehouses = pairedInsertionSort(distances, warehouses);
+        
+        return warehouses;
+    }
+    
+    // Sort an array of Warehouses via the distance from this drone
+    private Warehouse[] pairedInsertionSort(int[] distances, Warehouse[] warehouses) {
+        int arraySize = distances.length;
+        
+        for (int i = 1; i < arraySize; i++) {
+            int j = i;
+
+            int toInsert = distances[i];
+            Warehouse toInsertWarehouse = warehouses[i];
+
+            while( (j > 0) && (distances[j - 1]) > toInsert){
+                distances[j] = distances[j - 1];
+                warehouses[j] = warehouses[j - 1];
+                j--;
+
+            }
+
+            distances[j] = toInsert;
+            warehouses[j] = toInsertWarehouse;
+        }
+        
+        return warehouses;
+    }
+
 }
