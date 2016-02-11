@@ -58,17 +58,15 @@ public class Drone {
         return (int)Math.ceil( ( Math.sqrt(form1 + form2) ) );
     }
     
-
-    public boolean incrementTurn(){
-        turn++;
-        if(turn >= nextTurnAvailable)
-            available = true;
-        return available;
+    private int getDistanceBetween(int rowA, int colA, int rowB, int colB){
+        double form1 = (rowA - rowB) * (rowA - rowB);
+        double form2 = (colA - colB) * (colA - colB);
+        
+        return (int)Math.ceil( ( Math.sqrt(form1 + form2) ) );
     }
     
-
     // Returns sorted array of closest warehouses from this drone
-    // Format: closest to furthest
+    // Format: shortest to furthest
     public Warehouse[] getClosestWarehouses(Warehouse[] warehouses){
         int distances[] = new int[warehouses.length];
         
@@ -77,6 +75,31 @@ public class Drone {
                     warehouses[i].getRow(), warehouses[i].getColumn()
             );
             distances[i] = distance;   
+        }
+        
+        warehouses = pairedInsertionSort(distances, warehouses);
+        
+        return warehouses;
+    }
+    
+    // Returns sorted array of closest trip from this drone, warehouse, order 
+    // Format: shortest to furthest
+    public Warehouse[] getClosestTrip(Warehouse[] warehouses, Order order){
+        int distances[] = new int[warehouses.length];
+        int orderRow = order.row;
+        int orderCol = order.col;
+          
+        for(int i = 0; i < warehouses.length; i++){
+            int distance = getDistance(
+                    warehouses[i].getRow(), warehouses[i].getColumn()
+            );
+            
+             distance += getDistanceBetween(
+                    warehouses[i].getRow(), warehouses[i].getColumn(),
+                    orderRow, orderCol
+            );
+            
+            distances[i] = distance; 
         }
         
         warehouses = pairedInsertionSort(distances, warehouses);
@@ -116,4 +139,11 @@ public class Drone {
         return null; // <-- PLACEHOLDER
     }
 
+    public boolean incrementTurn(){
+        turn++;
+        if(turn >= nextTurnAvailable)
+            available = true;
+        return available;
+    }
+    
 }
