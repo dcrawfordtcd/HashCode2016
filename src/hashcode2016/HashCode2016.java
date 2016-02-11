@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  *
@@ -40,6 +43,7 @@ public class HashCode2016 {
         int rows = scanner.nextInt();
         int columns = scanner.nextInt();
         int D = scanner.nextInt();
+        Drone drones[] = new Drone[D];
         int deadline = scanner.nextInt();
         int maxLoad = scanner.nextInt();
         int P = scanner.nextInt();
@@ -49,7 +53,7 @@ public class HashCode2016 {
             productWeights[i] = scanner.nextInt();
         }
         int W = scanner.nextInt();
-        
+        Warehouse warehouses[] = new Warehouse[W];
         for(int i = 0; i < W; i++)
         {
             int warehouseR = scanner.nextInt();
@@ -57,18 +61,31 @@ public class HashCode2016 {
             int[] warehouseProducts = new int[P];
             for(int j = 0; j < P; j++)
                 warehouseProducts[j] = scanner.nextInt();
+            warehouses[i] = new Warehouse(warehouseR, warehouseC, warehouseProducts, i);
+        }
+        
+        for(int i = 0; i < D; i++){
+            drones[i] = new Drone(i, 0, maxLoad, warehouses[0].getRow(), warehouses[0].getColumn());
         }
         
         int C = scanner.nextInt();
+        
+        /* Stack of orders  */
+        LinkedList<Order> orders = new LinkedList<>();
+        
         for(int i = 0; i < C; i++)
         {
             int deliveryRow = scanner.nextInt();
             int deliveryColumn = scanner.nextInt();
             int numberOfItems = scanner.nextInt();
+            ArrayList<Integer> items = new ArrayList<>();
             for(int j = 0; j < numberOfItems; j++)
             {
                 int productType = scanner.nextInt();
+                items.add(productType);
             }
+            Order order = new Order(i, deliveryRow, deliveryColumn, items);
+            orders.push(order);
         }
         
         System.out.println("I think that read in correctly...");
