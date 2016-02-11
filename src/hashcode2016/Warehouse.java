@@ -37,4 +37,12 @@ public class Warehouse {
     public int checkQuantity(int itemId){
         return inventory[itemId];
     }
+    
+    public int getRow(){
+        return row;
+    }
+    
+    public int getColumn(){
+        return column;
+    }
 }
