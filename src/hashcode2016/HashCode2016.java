@@ -99,7 +99,7 @@ public class HashCode2016 {
                 if(theDrone.available)
                 {
                     Order topOrder = orders.pop();
-                    Order remainderOfOrder = theDrone.processOrder(topOrder);
+                    Order remainderOrder = theDrone.processOrder(topOrder, warehouses);
                     if(remainderOrder != null)
                         orders.push(remainderOrder);
                 }
