@@ -45,7 +45,6 @@ public class Drone {
         return true;
     }
     
-    
     // Returns int of distance to [rowB, colB]
     public int getDistance(int rowB, int colB){
         double form1 = (this.rowPos - rowB) * (this.rowPos - rowB);
