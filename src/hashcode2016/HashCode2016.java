@@ -84,7 +84,7 @@ public class HashCode2016 {
                 int productType = scanner.nextInt();
                 items.add(productType);
             }
-            Order order = new Order(i, deliveryRow, deliveryColumn, items, productWeights, warehouses[0]);
+            Order order = new Order(i, deliveryRow, deliveryColumn, items, productWeights, warehouses[0], maxLoad);
             orders.push(order);
         }
         

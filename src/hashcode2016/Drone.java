@@ -88,13 +88,13 @@ public class Drone {
         int distances[] = new int[warehouses.length];
         int orderRow = order.row;
         int orderCol = order.col;
-          
+        
         for(int i = 0; i < warehouses.length; i++){
             int distance = getDistance(
                     warehouses[i].getRow(), warehouses[i].getColumn()
             );
             
-             distance += getDistanceBetween(
+            distance += getDistanceBetween(
                     warehouses[i].getRow(), warehouses[i].getColumn(),
                     orderRow, orderCol
             );

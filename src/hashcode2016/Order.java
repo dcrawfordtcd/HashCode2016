@@ -14,14 +14,14 @@ public class Order {
     public int priority;
     
     public Order(int id, int row, int col, ArrayList<Integer> items,
-            int[] productWeights, Warehouse firstWarehouse)
+            int[] productWeights, Warehouse firstWarehouse, int maxLoad)
     {
         this.id = id;
         this.row = row;
         this.col = col;
         this.items = items;
         
-        this.priority = getOrderPriority(productWeights, items, firstWarehouse);
+        this.priority = getOrderPriority(productWeights, items, firstWarehouse, maxLoad);
     }
     
     public boolean takePortion(Drone drone) {
@@ -29,8 +29,8 @@ public class Order {
         return false;
     }
     
-    private int getOrderPriority(int productWeights[], ArrayList<Integer> items, Warehouse firstWarehouse){
-        int score = 0;
+    private int getOrderPriority(int productWeights[], ArrayList<Integer> items, Warehouse firstWarehouse, int maxLoad){
+        int orderPriority = 0;
         
         int orderWeight = 0;
         
@@ -42,18 +42,10 @@ public class Order {
                 firstWarehouse.getRow(), firstWarehouse.getColumn()
         );
         
-        // THIS IS NOT DONE OR RIGHT PLS NO
-        score += orderWeight;
-        score += distanceToFirstWarehouse;
+        orderPriority += ( orderWeight * (maxLoad / 10000) );
+        orderPriority += distanceToFirstWarehouse;
         
-        if(score < 30)
-            return 1;
-        else if(score < 50)
-            return 2;
-        else if(score < 70)
-            return 3;
-        else
-            return 4;
+        return orderPriority;
     }
    
     
