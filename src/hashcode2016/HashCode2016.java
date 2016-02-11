@@ -47,6 +47,7 @@ public class HashCode2016 {
         int D = scanner.nextInt();
         Drone drones[] = new Drone[D];
         int deadline = scanner.nextInt();
+        Deadline.DEADLINE = deadline;
         int maxLoad = scanner.nextInt();
         int P = scanner.nextInt();
         int[] productWeights = new int[P];
