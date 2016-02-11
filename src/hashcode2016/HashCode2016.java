@@ -43,6 +43,7 @@ public class HashCode2016 {
         int rows = scanner.nextInt();
         int columns = scanner.nextInt();
         int D = scanner.nextInt();
+        Drone drones[] = new Drone[D];
         int deadline = scanner.nextInt();
         int maxLoad = scanner.nextInt();
         int P = scanner.nextInt();
@@ -52,7 +53,7 @@ public class HashCode2016 {
             productWeights[i] = scanner.nextInt();
         }
         int W = scanner.nextInt();
-        
+        Warehouse warehouses[] = new Warehouse[W];
         for(int i = 0; i < W; i++)
         {
             int warehouseR = scanner.nextInt();
@@ -60,6 +61,11 @@ public class HashCode2016 {
             int[] warehouseProducts = new int[P];
             for(int j = 0; j < P; j++)
                 warehouseProducts[j] = scanner.nextInt();
+            warehouses[i] = new Warehouse(warehouseR, warehouseC, warehouseProducts, i);
+        }
+        
+        for(int i = 0; i < D; i++){
+            drones[i] = new Drone(i, 0, maxLoad, warehouses[0].getRow(), warehouses[0].getColumn());
         }
         
         int C = scanner.nextInt();
