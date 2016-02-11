@@ -13,10 +13,12 @@ public class Warehouse {
     private int row;
     private int column;
     private int[] inventory;
+    private int idNumber;
     
-    public Warehouse(int row, int column,  int[] inventory){
+    public Warehouse(int row, int column,  int[] inventory, int id){
         this.row = row;
         this.column = column;
         this.inventory = inventory;
+        idNumber = id;
     }
 }
