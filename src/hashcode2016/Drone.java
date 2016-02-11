@@ -5,6 +5,8 @@
  */
 package hashcode2016;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Shane
@@ -104,6 +106,14 @@ public class Drone {
         }
         
         return warehouses;
+    }
+    
+    public Order processOrder(Order order, Warehouse[] warehouses) {
+        warehouses = getClosestWarehouses(warehouses);
+        ArrayList<Integer> items = order.items;
+        
+        
+        return null; // <-- PLACEHOLDER
     }
 
 }
