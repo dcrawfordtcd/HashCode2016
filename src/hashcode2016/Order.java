@@ -12,14 +12,11 @@ public class Order {
     public int row, col;
     public ArrayList<Integer> items;
     
-    public Order(int id, int row, int col, int[] items) {
+    public Order(int id, int row, int col, ArrayList<Integer> items) {
         this.id = id;
         this.row = row;
         this.col = col;
-        this.items = new ArrayList<>();
-        for (int item : items) {
-            this.items.add(item);
-        }
+        this.items = items;
     }
     
     public boolean takePortion(Drone drone) {
