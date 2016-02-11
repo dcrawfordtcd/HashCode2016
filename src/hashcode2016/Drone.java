@@ -30,4 +30,12 @@ public class Drone {
         currentWeight+= itemWeight*numberOfItems;
         return true;
     }
+    
+    public boolean unload(int numberOfItems, int itemType, int itemWeight){
+        if(inventory[itemType]-numberOfItems <0){
+            return false;
+        }
+        inventory[itemType]-=numberOfItems;
+        return true;
+    }
 }
