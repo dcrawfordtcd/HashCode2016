@@ -92,7 +92,18 @@ public class HashCode2016 {
         
         for(int i = 0; i < deadline; i++)
         {
-            
+            for(Drone theDrone : drones)
+            {
+                theDrone.incrementTurn();
+                
+                if(theDrone.available)
+                {
+                    Order topOrder = orders.pop();
+                    Order remainderOfOrder = theDrone.processOrder(topOrder);
+                    if(remainderOrder != null)
+                        orders.push(remainderOrder);
+                }
+            }
         }
     }
         
