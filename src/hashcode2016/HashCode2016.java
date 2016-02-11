@@ -27,7 +27,7 @@ public class HashCode2016 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         
         FileWriter fileWriter = new FileWriter("output.txt");
-        int inputFile = 0;
+        int inputFile = 3;
         File file;
         switch(inputFile)
         {
@@ -35,7 +35,9 @@ public class HashCode2016 {
                 break;
             case 1 : file = new File("mother_of_all_warehouses.in");
                 break;
-            default : file = new File("redundancy.in");
+            case 2 : file = new File("redundancy.in");
+                break;
+            default : file = new File("test_case.in");
                 break;
         }
         
@@ -52,6 +54,7 @@ public class HashCode2016 {
         {
             productWeights[i] = scanner.nextInt();
         }
+        ItemWeights.itemWeights = productWeights;
         int W = scanner.nextInt();
         Warehouse warehouses[] = new Warehouse[W];
         for(int i = 0; i < W; i++)
@@ -88,20 +91,22 @@ public class HashCode2016 {
             orders.push(order);
         }
         
-        System.out.println("I think that read in correctly...");
+        //System.out.println("I think that read in correctly...");
         
         for(int i = 0; i < deadline; i++)
         {
             for(Drone theDrone : drones)
             {
                 theDrone.incrementTurn();
-                
                 if(theDrone.available)
                 {
-                    Order topOrder = orders.pop();
-                    Order remainderOrder = theDrone.processOrder(topOrder, warehouses);
-                    if(remainderOrder != null)
+                    if(!orders.isEmpty())
+                    {
+                        Order topOrder = orders.pop();
+                        Order remainderOrder = theDrone.processOrder(topOrder, warehouses);
+                        if(remainderOrder != null)
                         orders.push(remainderOrder);
+                    }
                 }
             }
         }
