@@ -1,6 +1,8 @@
 
 package hashcode2016;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author aran
@@ -8,16 +10,20 @@ package hashcode2016;
 public class Order {
     public int id;
     public int row, col;
-    public int[] items;
+    public ArrayList<Integer> items;
     
     public Order(int id, int row, int col, int[] items) {
         this.id = id;
         this.row = row;
         this.col = col;
-        this.items = items;
+        this.items = new ArrayList<>();
+        for (int item : items) {
+            this.items.add(item);
+        }
     }
     
-    public boolean takePortion() {
+    public boolean takePortion(Drone drone) {
+        
         return false;
     }
 }
