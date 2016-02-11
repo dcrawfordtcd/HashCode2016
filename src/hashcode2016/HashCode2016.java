@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  *
@@ -60,15 +63,23 @@ public class HashCode2016 {
         }
         
         int C = scanner.nextInt();
+        
+        /* Stack of orders  */
+        LinkedList<Order> orders = new LinkedList<>();
+        
         for(int i = 0; i < C; i++)
         {
             int deliveryRow = scanner.nextInt();
             int deliveryColumn = scanner.nextInt();
             int numberOfItems = scanner.nextInt();
+            ArrayList<Integer> items = new ArrayList<>();
             for(int j = 0; j < numberOfItems; j++)
             {
                 int productType = scanner.nextInt();
+                items.add(productType);
             }
+            Order order = new Order(i, deliveryRow, deliveryColumn, items);
+            orders.push(order);
         }
         System.out.println("I think that read in correctly...");
         
