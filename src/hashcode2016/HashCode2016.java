@@ -69,7 +69,7 @@ public class HashCode2016 {
         }
         
         for(int i = 0; i < D; i++){
-            drones[i] = new Drone(i, 0, maxLoad, warehouses[0].getRow(), warehouses[0].getColumn());
+            drones[i] = new Drone(i, P, maxLoad, warehouses[0].getRow(), warehouses[0].getColumn());
         }
         
         int C = scanner.nextInt();

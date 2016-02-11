@@ -160,7 +160,7 @@ public class Drone {
                         } else {
                             System.err.println("Oh Shit!");
                         }
-                        items.set(item, -1);
+                        items.set(i, -1);
                         updateAvailability(getDistanceBetween(rowPos, colPos, house.getRow(), house.getColumn()), getDistanceBetween(house.getRow(), house.getColumn(), order.row, order.col));
                         System.out.println(idNumber + " D " + order.id + " " + item + " 1");
                     }
