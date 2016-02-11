@@ -54,6 +54,7 @@ public class HashCode2016 {
         {
             productWeights[i] = scanner.nextInt();
         }
+        ItemWeights.itemWeights = productWeights;
         int W = scanner.nextInt();
         Warehouse warehouses[] = new Warehouse[W];
         for(int i = 0; i < W; i++)
