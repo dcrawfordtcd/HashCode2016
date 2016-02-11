@@ -13,7 +13,7 @@ public class Warehouse {
     private int row;
     private int column;
     private int[] inventory;
-    private int idNumber;
+    public int idNumber;
     
     public Warehouse(int row, int column,  int[] inventory, int id){
         this.row = row;
@@ -36,6 +36,10 @@ public class Warehouse {
     
     public int checkQuantity(int itemId){
         return inventory[itemId];
+    }
+    
+    public boolean hasItem(int itemID) {
+        return inventory[itemID] > 0;
     }
     
     public int getRow(){
